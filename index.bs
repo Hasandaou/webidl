@@ -1211,7 +1211,7 @@ are [=included=] by their [=host interface=].
 
 Issue: [=interface mixin member|Member=] order isn't clearly specified,
 in particular when [=interface mixins=] are defined in separate documents.
-It is discussed in <a href="https://github.com/heycam/webidl/issues/432">issue #432</a>.
+It is discussed in <a href="https://github.com/whatwg/webidl/issues/432">issue #432</a>.
 
 No [=extended attributes=] defined in this specification are applicable to [=includes statements=].
 
@@ -1543,7 +1543,7 @@ Constants can appear on [=interfaces=] and [=callback interfaces=].
     named integer codes in the style of an enumeration.  The Web platform
     is moving away from this design pattern in favor of the use of strings.
     Editors who wish to use this feature are strongly advised to discuss this
-    by <a href="https://github.com/heycam/webidl/issues/new?title=Intent%20to%20use%20Constants">filing an issue</a>
+    by <a href="https://github.com/whatwg/webidl/issues/new?title=Intent%20to%20use%20Constants">filing an issue</a>
     before proceeding.
 </p>
 
@@ -2607,7 +2607,7 @@ See [[#interface-object]] for details on how a [=constructor operation=] is to b
     new object that [=implements=] the interface.
     It would take either zero or one argument.
 
-    Issue(heycam/webidl#698): It is unclear whether the <code class="idl">NodeList</code> interface
+    Issue(whatwg/webidl#698): It is unclear whether the <code class="idl">NodeList</code> interface
     object would implement a \[[Construct]] internal method. In any case, trying to use it as a
     constructor will cause a {{TypeError}} to be thrown.
 
@@ -4092,7 +4092,7 @@ Prose accompanying an [=interface=] with a [=pair iterator=] must define a [=/li
     or (b) with a forEach method that instead invokes its callback like
     Set.prototype.forEach (where the key is the same as the value).
     If you're creating an API that needs such a forEach method, please
-    <a href="https://github.com/heycam/webidl/issues/new?title=Enhancement%20request%20for%20Iterables">file an issue</a>.
+    <a href="https://github.com/whatwg/webidl/issues/new?title=Enhancement%20request%20for%20Iterables">file an issue</a>.
 
 </div>
 
@@ -4284,7 +4284,7 @@ async iterator's <code>return()</code> method is invoked. This most commonly occ
 
 <p class="note">We could add a similar hook for <code>throw()</code>. So far there has been no need,
 but if you are creating an API that needs such capabilities, please
-<a href="https://github.com/heycam/webidl/issues/new?title=Enhancement%20request%20for%20Async%20Iterables">file an issue</a>.
+<a href="https://github.com/whatwg/webidl/issues/new?title=Enhancement%20request%20for%20Async%20Iterables">file an issue</a>.
 
 The prose may also define <dfn export>asynchronous iterator initialization steps</dfn>. These
 receive the instance of the [=interface=] being iterated, the newly-created iterator object, and a
@@ -5078,7 +5078,7 @@ that [=interface/inherit=] from {{DOMException}}.
 In addition to their type, which is either one of the [=simple exceptions=], {{DOMException}}, or a
 derived interface of {{DOMException}}, all exceptions have a
 <dfn id="dfn-exception-message" for="exception" export>message</dfn>, which is an
-[=implementation-defined=] [=string=] that provides human readable details of the error.
+[=implementation-defined=] [=string=] that provides human-readable details of the error.
 {{DOMException}} instances also have an
 <dfn id="dfn-exception-error-name" for="exception" export>error name</dfn> [=string=], which
 provides a general category for the exception. {{DOMException}} derived interfaces will
@@ -5163,7 +5163,7 @@ about what the exception indicates, which is useful when constructing the except
     implementation should construct, and so specifying it is not necessary.
 </div>
 
-The resulting behavior from creating and throwing an exception is language binding-specific.
+The resulting behavior from creating and throwing an exception is language binding specific.
 
 <p class=note>See [[#es-creating-throwing-exceptions]] for details on what creating and throwing an
 exception entails in the ECMAScript language binding.
@@ -5181,7 +5181,7 @@ in [[#idl-DOMException-derived-interfaces]], will have their own names, not list
 When [=exception/creating=] or [=exception/throwing=] a {{DOMException}}, specifications must use
 one of these names. If a specification author believes none of these names are a good fit for their
 case, they must
-<a href="https://github.com/heycam/webidl/issues/new?title=DOMException%20name%20proposal">file an issue</a>
+<a href="https://github.com/whatwg/webidl/issues/new?title=DOMException%20name%20proposal">file an issue</a>
 to discuss adding a new name to the shared namespace, so that the community can coordinate such
 efforts. Note that adding new use-case-specific names is only important if you believe web
 developers will discriminate multiple error conditions arising from a single API.
@@ -6485,7 +6485,7 @@ It would not be appropriate to accept such a union, only to then convert values 
 [=numeric type=] to a {{bigint}} for further processing, as this runs the risk of introducing
 precision errors.
 Please
-<a href="https://github.com/heycam/webidl/issues/new?title=Intent%20to%20use%20bigint/numeric%20union">file an issue</a>
+<a href="https://github.com/whatwg/webidl/issues/new?title=Intent%20to%20use%20bigint/numeric%20union">file an issue</a>
 before using this feature.
 </p>
 
@@ -10347,7 +10347,7 @@ behavior of legacy APIs.
 
 Editors who believe they have a good reason for using these extended attributes are strongly advised
 to discuss this by
-<a href="https://github.com/heycam/webidl/issues/new?title=Intent%20to%20use%20a%20legacy%20extended%20attribute">filing an issue</a>
+<a href="https://github.com/whatwg/webidl/issues/new?title=Intent%20to%20use%20a%20legacy%20extended%20attribute">filing an issue</a>
 before proceeding.
 
 
@@ -11469,7 +11469,7 @@ default interfaces do not have such steps.
     In general, constructors are described by defining a [=constructor operation=] and its behavior.
     The [=overridden constructor steps=] are used only for more complicated situations.
     Editors who wish to use this feature are strongly advised to discuss this by
-    <a href="https://github.com/heycam/webidl/issues/new?title=Intent%20to%20use%20constructor%20steps">filing an issue</a> before proceeding.
+    <a href="https://github.com/whatwg/webidl/issues/new?title=Intent%20to%20use%20constructor%20steps">filing an issue</a> before proceeding.
 </p>
 
 <div algorithm>
@@ -11621,7 +11621,7 @@ with the [{{LegacyNoInterfaceObject}}] [=extended attribute=].
 
         Issue: Should an {{@@unscopables}} property also be defined if |interface| is
         declared with the [{{Global}}] [=extended attribute=]?
-        This is discussed in <a href="https://github.com/heycam/webidl/issues/544">issue #544</a>.
+        This is discussed in <a href="https://github.com/whatwg/webidl/issues/544">issue #544</a>.
         1.  Let |unscopableObject| be [$OrdinaryObjectCreate$](<emu-val>null</emu-val>).
         1.  [=list/For each=] [=exposed=] [=member=] |member| of |interface|
             that is declared with the [{{Unscopable}}] [=extended attribute=]:
@@ -12116,7 +12116,7 @@ in which case they are exposed on every object that [=implements=] the interface
                 with |idlObject| as [=this=] and |values| as the argument values.
             1.  Return |R|, [=converted to an ECMAScript value=].
 
-                Issue(heycam/webidl#674): |R| is assumed to be an IDL value of the type |op| is declared to return.
+                Issue(whatwg/webidl#674): |R| is assumed to be an IDL value of the type |op| is declared to return.
 
         And then, if <a lt="an exception was thrown">an exception |E| was thrown</a>:
 
@@ -14537,7 +14537,7 @@ A {{DOMException}} is represented by a
         constructing this message, e.g., by including the URL of a cross-origin frame, or
         information which could identify the user.
 
-    1.  Initialize |ex|'s additionally as described by the caller.
+    1.  Perform any additional initialization on |ex| as described by the caller.
 
     1.  Return |ex|.
 </div>
@@ -14824,7 +14824,7 @@ It is strongly discouraged to use legacy Web IDL constructs in specifications
 unless required to specify the behavior of legacy Web platform features,
 or for consistency with such features.
 Editors who wish to use legacy Web IDL constructs are strongly advised to discuss this
-by <a href="https://github.com/heycam/webidl/issues/new?title=Intent%20to%20use%20a%20legacy%20Web%20IDL%20construct">filing an issue</a>
+by <a href="https://github.com/whatwg/webidl/issues/new?title=Intent%20to%20use%20a%20legacy%20Web%20IDL%20construct">filing an issue</a>
 before proceeding.
 
 Marking a construct as legacy does not, in itself,
