@@ -5397,53 +5397,52 @@ interfaces will always return 0.
 
 <div class=example id=example-domexception-derived-interface>
     The definition for a {{DOMException}} derived interface which carries along an additional
-    "hardware error code", for interfacing with a hypothetical Widget hardware device, could look
-    something like this:
+    "protocol error code", which is derived from what the server sent over some some hypothetical
+    network protocol, could look something like this:
 
     <pre highlight=webidl>
         [Exposed=Window]
-        interface WidgetError : DOMException {
-          constructor(optional DOMString message = "", WidgetErrorOptions options);
+        interface ProtocolXError : DOMException {
+          constructor(optional DOMString message = "", ProtocolXErrorOptions options);
 
-          readonly attribute unsigned long long hardwareErrorCode;
+          readonly attribute unsigned long long errorCode;
         };
 
-        dictionary WidgetErrorOptions {
-            required [EnforceRange] unsigned long long hardwareErrorCode;
+        dictionary ProtocolXErrorOptions {
+            required [EnforceRange] unsigned long long errorCode;
         };
     </pre>
 
-    Every <code>WidgetError</code> instance has a <dfn for="WidgetError">hardware error code</dfn>,
+    Every <code>ProtocolXError</code> instance has an <dfn for="ProtocolXError">error code</dfn>,
     a number.
 
-    <div algorithm="WidgetError constructor">
-        The <b><code>new WidgetError(|message|, |options|)</code></b> constructor steps are:
+    <div algorithm="ProtocolXError constructor">
+        The <b><code>new ProtocolXError(|message|, |options|)</code></b> constructor steps are:
 
-        1.  Set [=this=]'s [=DOMException/name=] to "<code>WidgetError</code>".
+        1.  Set [=this=]'s [=DOMException/name=] to "<code>ProtocolXError</code>".
         1.  Set [=this=]'s [=DOMException/message=] to |message|.
-        1.  Set [=this=]'s [=WidgetError/hardware error code=] to
-            |options|["<code>hardwareErrorCode</code>"].
+        1.  Set [=this=]'s [=ProtocolXError/error code=] to |options|["<code>errorCode</code>"].
     </div>
 
-    <div algorithm="WigetError hardwareErrorCode">
-        The <b><code>hardwareErrorCode</code></b> getter steps are to return [=this=]'s
-        [=WidgetError/hardware error code=].
+    <div algorithm="ProtocolXError errorCode">
+        The <b><code>errorCode</code></b> getter steps are to return [=this=]'s
+        [=ProtocolXError/error code=].
     </div>
 
-    <code>WidgetError</code> objects are [=serializable objects=].
+    <code>ProtocolXError</code> objects are [=serializable objects=].
 
-    <div algorithm="WidgetError serialization steps">
+    <div algorithm="ProtocolXError serialization steps">
         Their [=serialization steps=], given |value| and |serialized|, are:
 
         1. Run the {{DOMException}} [=serialization steps=] given |value| and |serialized|.
-        1. Set |serialized|.\[[HardwareErrorCode]] to |value|'s [=WidgetError/hardware error code=].
+        1. Set |serialized|.\[[ErrorCode]] to |value|'s [=ProtocolXError/error code=].
     </div>
 
-    <div algorithm="WidgetError deserialization steps">
+    <div algorithm="ProtocolXError deserialization steps">
         Their [=deserialization steps=], given |value| and |serialized|, are:
 
         1. Run the {{DOMException}} [=deserialization steps=] given |value| and |serialized|.
-        1. Set |value|'s [=WidgetError/hardware error code=] to |serialized|.\[[HardwareErrorCode]].
+        1. Set |value|'s [=ProtocolXError/error code=] to |serialized|.\[[ErrorCode]].
     </div>
 </div>
 
@@ -5451,12 +5450,12 @@ To [=exception/create=] or [=exception/throw=] a {{DOMException}} derived interf
 [=interface=] [=identifier=] as well as the additional information needed to construct it.
 
 <div class=example id=example-domexception-derived-throwing>
-    <p>To throw an instance of the <code>WidgetError</code> exemplified
+    <p>To throw an instance of the <code>ProtocolXError</code> exemplified
     <a href=#example-domexception-derived-interface>above</a>:
 
     <blockquote>
-        <p>[=exception/Throw=] a <code>WidgetError</code> whose [=WidgetError/hardware error code=]
-        is 42.
+        <p>[=exception/Throw=] a <code>ProtocolXError</code> whose [=ProtocolXError/error code=] is
+        42.
     </blockquote>
 </div>
 
