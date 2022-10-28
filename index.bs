@@ -5075,15 +5075,6 @@ pre-defined exceptions that specifications can reference and throw in their defi
 operations, attributes, and so on. Custom exception types can also be defined, as [=interfaces=]
 that [=interface/inherit=] from {{DOMException}}.
 
-In addition to their type, which is either one of the [=simple exceptions=], {{DOMException}}, or a
-derived interface of {{DOMException}}, all exceptions have a
-<dfn id="dfn-exception-message" for="exception" export>message</dfn>, which is an
-[=implementation-defined=] [=string=] that provides human-readable details of the error.
-{{DOMException}} instances also have an
-<dfn id="dfn-exception-error-name" for="exception" export>error name</dfn> [=string=], which
-provides a general category for the exception. {{DOMException}} derived interfaces will
-have other properties, as defined in their specifications.
-
 A <dfn id="dfn-simple-exception" export>simple exception</dfn> is identified by one of the
 following types:
 
@@ -5099,8 +5090,8 @@ reserved for use by the ECMAScript parser and by authors, respectively). The mea
 [=simple exception=] matches its corresponding error object in the ECMAScript specification.
 
 The second kind of exception is a {{DOMException}}, which provides further
-programmatically-introspectable detail on the error that occurred by giving an [=exception/error
-name=]. Such [=exception/error names=] are drawn from the [=error names table=] below.
+programmatically-introspectable detail on the error that occurred by giving a [=DOMException/name=].
+Such [=DOMException/names=] are drawn from the <a><code>DOMException</code> names table</a> below.
 
 <p class=note>As {{DOMException}} is an [=interface type=], it can be used as a type in IDL. This
 allows for example an [=operation=] to be declared to have a {{DOMException}} [=return type=]. This
@@ -5111,12 +5102,11 @@ and thus described in the dedicated section [[#idl-DOMException-derived-interfac
 
 [=Simple exceptions=] can be
 <dfn id="dfn-create-exception" for="exception" export lt="create">created</dfn> by providing their
-type name. A {{DOMException}} can be [=exception/created=] by providing its [=error name=] followed
-by {{DOMException}}. Exceptions can also be
+type name. A {{DOMException}} can be [=exception/created=] by providing its [=DOMException/name=]
+followed by {{DOMException}}. Exceptions can also be
 <dfn id="dfn-throw" for="exception" export lt="throw">thrown</dfn>, by providing the same details
 required to [=exception/create=] one. In both cases, the caller may provide additional information
-about what the exception indicates, which is useful when constructing the exception's
-[=exception/message=].
+about what the exception indicates, which is useful when constructing the exception's message.
 
 <div class="example" id="example-exception-creation-and-throwing">
     <p>Here is are some examples of wording to use to create and throw exceptions.
@@ -5126,20 +5116,21 @@ about what the exception indicates, which is useful when constructing the except
         <p>[=exception/Throw=] a {{TypeError}}.
     </blockquote>
 
-    <p>To throw a new {{DOMException}} with [=error name=] "{{NotAllowedError}}":
+    <p>To throw a new {{DOMException}} with [=DOMException/name=] "{{NotAllowedError}}":
 
     <blockquote>
         <p>[=exception/Throw=] an "{{NotAllowedError}}" {{DOMException}}.
     </blockquote>
 
-    <p>To create a new {{DOMException}} with [=error name=] "{{SyntaxError}}":
+    <p>To create a new {{DOMException}} with [=DOMException/name=] "{{SyntaxError}}":
 
     <blockquote>
         <p>Let <var ignore>object</var> be a newly [=exception/created=] "{{SyntaxError}}"
         {{DOMException}}.
     </blockquote>
 
-    <p>To [=reject=] a promise with a new {{DOMException}} with [=error name=] "{{OperationError}}":
+    <p>To [=reject=] a promise with a new {{DOMException}} with [=DOMException/name=]
+    "{{OperationError}}":
 
     <blockquote>
         [=Reject=] <var ignore>p</var> with an "{{OperationError}}" {{DOMException}}.
@@ -5147,8 +5138,8 @@ about what the exception indicates, which is useful when constructing the except
 </div>
 
 <div class=example id=example-exception-throwing-message-hint>
-    <p>An example of including additional information used to construct the [=exception/message=]
-    would be:
+    <p>An example of including additional information used to construct the exception message would
+    be:
 
     <blockquote>
         [=exception/Throw=] a "{{SyntaxError}}" {{DOMException}} indicating that the given value
@@ -5159,8 +5150,8 @@ about what the exception indicates, which is useful when constructing the except
     why the exception is being thrown, e.g., because there are many different steps in the algorithm
     which throw a "{{SyntaxError}}" {{DOMException}}. In contrast, if your specification throws a
     "{{NotAllowedError}}" {{DOMException}} immediately after checking if the user has provided
-    permission to use a given feature, it's fairly obvious what sort of [=exception/message=] the
-    implementation should construct, and so specifying it is not necessary.
+    permission to use a given feature, it's fairly obvious what sort of message the implementation
+    should construct, and so specifying it is not necessary.
 </div>
 
 The resulting behavior from creating and throwing an exception is language binding specific.
@@ -5171,9 +5162,9 @@ exception entails in the ECMAScript language binding.
 
 <h4 id="idl-DOMException-error-names">Base {{DOMException}} error names</h4>
 
-The <dfn id="dfn-error-names-table" export>error names table</dfn> below lists all the allowed error
-names for instances of the base {{DOMException}} interface, along with a description of what such
-error names mean, and legacy numeric error code values.
+The <dfn id="dfn-error-names-table"><code>DOMException</code> names table</dfn> below lists all the
+allowed [=DOMException/names=] for instances of the base {{DOMException}} interface, along with a
+description of what such names mean, and legacy numeric error code values.
 
 <p class="note">Interfaces [=interface/inheriting=] from {{DOMException}}, in the manner described
 in [[#idl-DOMException-derived-interfaces]], will have their own names, not listed in this table.
@@ -5373,13 +5364,13 @@ over just using {{SyntaxError!!exception}} to refer to the {{DOMException}}. [[D
 
 <h4 id="idl-DOMException-derived-interfaces">{{DOMException}} derived interfaces</h4>
 
-When an exception needs to carry additional programmatically-introspectable information, beyond just
-its [=error name=], specification authors can create an [=interface=] which [=interface/inherits=]
-from {{DOMException}}. Such interfaces need to follow certain rules, in order to have a predictable
-shape for developers. Specifically:
+When an exception needs to carry additional programmatically-introspectable information, beyond what
+can be provided with a {{DOMException}}'s [=DOMException/name=], specification authors can create an
+[=interface=] which [=interface/inherits=] from {{DOMException}}. Such interfaces need to follow
+certain rules, in order to have a predictable shape for developers. Specifically:
 
 *   The [=identifier=] of the [=interface=] must end with <code>Error</code>, and must not be any
-    of the names in the [=error names table=].
+    of the names in the <a><code>DOMException</code> names table</a>.
 *   The [=interface=] must have a [=constructor operation=] which sets the instance's
     [=DOMException/name=] to the interface's [=identifier=].
 *   Their [=constructor operation=] must take as its first parameter an [=optional=] {{DOMString}}
@@ -5398,7 +5389,7 @@ interfaces will always return 0.
 <div class=example id=example-domexception-derived-interface>
     The definition for a {{DOMException}} derived interface which carries along an additional
     "protocol error code", which is derived from what the server sent over some some hypothetical
-    network protocol, could look something like this:
+    network protocol "protocol X", could look something like this:
 
     <pre highlight=webidl>
         [Exposed=Window]
@@ -5454,8 +5445,8 @@ To [=exception/create=] or [=exception/throw=] a {{DOMException}} derived interf
     <a href=#example-domexception-derived-interface>above</a>:
 
     <blockquote>
-        <p>[=exception/Throw=] a <code>ProtocolXError</code> whose [=ProtocolXError/error code=] is
-        42.
+        <p>[=exception/Throw=] a <code>ProtocolXError</code> whose [=ProtocolXError/error code=]
+        is 42.
     </blockquote>
 </div>
 
@@ -14502,7 +14493,9 @@ A {{DOMException}} is represented by a
 </div>
 
 <div algorithm="to create a DOMException">
-    To [=exception/create=] a {{DOMException}} given [=error name=] |name|:
+    To [=exception/create=] a {{DOMException}} given a string |name|:
+
+    1.  Assert: |name| appears in the <a><code>DOMException</code> names table</a>.
 
     1.  Let |ex| be a [=new=] {{DOMException}} created in the [=current realm=].
 
@@ -14750,8 +14743,8 @@ The <dfn attribute for="DOMException"><code>message</code></dfn> getter steps ar
 return [=this=]'s [=DOMException/message=].
 
 The <dfn attribute for="DOMException"><code>code</code></dfn> getter steps are to return the legacy
-code indicated in the [=error names table=] for [=this=]'s [=DOMException/name=], or 0 if no such
-entry exists in the table.
+code indicated in the <a><code>DOMException</code> names table</a> for [=this=]'s
+[=DOMException/name=], or 0 if no such entry exists in the table.
 
 {{DOMException}} objects are [=serializable objects=].
 
