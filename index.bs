@@ -5392,7 +5392,7 @@ interfaces will always return 0.
     network protocol "protocol X", could look something like this:
 
     <pre highlight=webidl>
-        [Exposed=Window]
+        [Exposed=Window, Serializable]
         interface ProtocolXError : DOMException {
           constructor(optional DOMString message = "", ProtocolXErrorOptions options);
 
